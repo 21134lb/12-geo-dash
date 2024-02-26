@@ -2,7 +2,7 @@
 // geometry dash
 /*******************************************************/
 console.log("%c t01_create_sprite", "color: blue;");
-const PLAYERJUMP = -10;
+let PLAYERJUMP;
 /*******************************************************/
 // setup()
 /*******************************************************/
@@ -13,7 +13,8 @@ function setup() {
   const PLAYERHEIGHT = height/9;
   const PLAYERSPAWNY = height- PLAYERHEIGHT;
   const PLAYERSPAWNX = PLAYERWIDTH;
-  world.gravity.y=10;
+  PLAYERJUMP = -height/9;
+  world.gravity.y= height/1.5;
   wallLeft  = new Sprite(0, height/2, 0, height, 'k');
 
   wallRight  = new Sprite(width, height/2, 0, height, 'k');
@@ -30,7 +31,7 @@ function setup() {
 /*******************************************************/
 function draw() {
  background('green'); 
- if (kb.pressing('space')) {
+ if (kb.presses('space')&&player.y>height-height/9) {
 	player.vel.y = PLAYERJUMP;
  }
 
